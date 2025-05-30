@@ -1,0 +1,170 @@
+{
+  "papers": {
+    "25e20d75-e725-4f36-8fe6-06c2f664a18d": {
+      "id": "25e20d75-e725-4f36-8fe6-06c2f664a18d",
+      "title": "A Hierarchical Architecture for the Future Internet of Vehicles",
+      "type": "journal",
+      "authors": [
+        "59709c0a-90d3-425c-bf48-35a080d1dd0b",
+        "2666e752-b3ac-41ba-93f4-7ea5216f45ff",
+        "4674e10c-bfe1-45ab-8e1c-f1359975df1e",
+        "7281f40d-8431-43db-b1fd-0e460dc49449",
+        "eeaca2b1-0ec0-4488-aad9-13e83275f4bf",
+        "19cc395f-c8d1-438d-b07b-a9379adbbc90"
+      ],
+      "publication_date": "2019-07-19",
+      "venue_id": "95f4fbb0-3c86-4c27-84ce-334e1de62911",
+      "volume": "57",
+      "issue": "7",
+      "pages": "41-47",
+      "publisher": "IEEE",
+      "abstract": "Recent advances in wireless communication, sensing, computation and control technologies have paved the way for the development of a new era of Internet of Vehicles (IoV)...",
+      "total_citations": 138,
+      "created_at": "2025-05-30T14:44:49.181344"
+    },
+    "e7d7b698-bf4e-488e-9c7c-a37848dd58d2": {
+      "id": "e7d7b698-bf4e-488e-9c7c-a37848dd58d2",
+      "title": "Age of View: A New Metric for Evaluating Heterogeneous Information Fusion in Vehicular Cyber-Physical Systems",
+      "type": "conference",
+      "authors": [
+        "2666e752-b3ac-41ba-93f4-7ea5216f45ff",
+        "59709c0a-90d3-425c-bf48-35a080d1dd0b",
+        "01284728-430c-4c4c-a8e3-8944e2eb5f09",
+        "7150ad83-020a-47d0-8a8a-ae3bc92f52cf",
+        "88268de5-a776-4967-923f-3cdff56d12a1",
+        "0b892fc4-da6f-4283-8a12-ad3b8e2a0349"
+      ],
+      "publication_date": "2022-10-08",
+      "venue_id": "c3ab4046-2ca0-4ea5-9ab2-7804438c46c1",
+      "volume": null,
+      "issue": null,
+      "pages": "3762-3767",
+      "publisher": "IEEE",
+      "abstract": "Heterogeneous information fusion is one of the most critical issues for realizing vehicular cyber-physical systems (VCPSs)...",
+      "total_citations": 8,
+      "created_at": "2025-05-30T14:44:49.181390"
+    }
+  },
+  "authors": {
+    "59709c0a-90d3-425c-bf48-35a080d1dd0b": {
+      "id": "59709c0a-90d3-425c-bf48-35a080d1dd0b",
+      "name": "Kai Liu",
+      "is_corresponding": true,
+      "papers": [
+        "25e20d75-e725-4f36-8fe6-06c2f664a18d",
+        "e7d7b698-bf4e-488e-9c7c-a37848dd58d2"
+      ],
+      "total_citations": 146
+    },
+    "2666e752-b3ac-41ba-93f4-7ea5216f45ff": {
+      "id": "2666e752-b3ac-41ba-93f4-7ea5216f45ff",
+      "name": "Xincao Xu",
+      "is_corresponding": false,
+      "papers": [
+        "25e20d75-e725-4f36-8fe6-06c2f664a18d",
+        "e7d7b698-bf4e-488e-9c7c-a37848dd58d2"
+      ],
+      "total_citations": 146
+    },
+    "4674e10c-bfe1-45ab-8e1c-f1359975df1e": {
+      "id": "4674e10c-bfe1-45ab-8e1c-f1359975df1e",
+      "name": "Mengliang Chen",
+      "is_corresponding": false,
+      "papers": [
+        "25e20d75-e725-4f36-8fe6-06c2f664a18d"
+      ],
+      "total_citations": 138
+    },
+    "7281f40d-8431-43db-b1fd-0e460dc49449": {
+      "id": "7281f40d-8431-43db-b1fd-0e460dc49449",
+      "name": "Bingyi Liu",
+      "is_corresponding": true,
+      "papers": [
+        "25e20d75-e725-4f36-8fe6-06c2f664a18d"
+      ],
+      "total_citations": 138
+    },
+    "eeaca2b1-0ec0-4488-aad9-13e83275f4bf": {
+      "id": "eeaca2b1-0ec0-4488-aad9-13e83275f4bf",
+      "name": "Libing Wu",
+      "is_corresponding": false,
+      "papers": [
+        "25e20d75-e725-4f36-8fe6-06c2f664a18d"
+      ],
+      "total_citations": 138
+    },
+    "19cc395f-c8d1-438d-b07b-a9379adbbc90": {
+      "id": "19cc395f-c8d1-438d-b07b-a9379adbbc90",
+      "name": "Victor CS Lee",
+      "is_corresponding": false,
+      "papers": [
+        "25e20d75-e725-4f36-8fe6-06c2f664a18d"
+      ],
+      "total_citations": 138
+    },
+    "01284728-430c-4c4c-a8e3-8944e2eb5f09": {
+      "id": "01284728-430c-4c4c-a8e3-8944e2eb5f09",
+      "name": "Qisen Zhang",
+      "is_corresponding": false,
+      "papers": [
+        "e7d7b698-bf4e-488e-9c7c-a37848dd58d2"
+      ],
+      "total_citations": 8
+    },
+    "7150ad83-020a-47d0-8a8a-ae3bc92f52cf": {
+      "id": "7150ad83-020a-47d0-8a8a-ae3bc92f52cf",
+      "name": "Hao Jiang",
+      "is_corresponding": false,
+      "papers": [
+        "e7d7b698-bf4e-488e-9c7c-a37848dd58d2"
+      ],
+      "total_citations": 8
+    },
+    "88268de5-a776-4967-923f-3cdff56d12a1": {
+      "id": "88268de5-a776-4967-923f-3cdff56d12a1",
+      "name": "Ke Xiao",
+      "is_corresponding": false,
+      "papers": [
+        "e7d7b698-bf4e-488e-9c7c-a37848dd58d2"
+      ],
+      "total_citations": 8
+    },
+    "0b892fc4-da6f-4283-8a12-ad3b8e2a0349": {
+      "id": "0b892fc4-da6f-4283-8a12-ad3b8e2a0349",
+      "name": "Jiangtao Luo",
+      "is_corresponding": false,
+      "papers": [
+        "e7d7b698-bf4e-488e-9c7c-a37848dd58d2"
+      ],
+      "total_citations": 8
+    }
+  },
+  "venues": {
+    "95f4fbb0-3c86-4c27-84ce-334e1de62911": {
+      "id": "95f4fbb0-3c86-4c27-84ce-334e1de62911",
+      "name": "IEEE Communications Magazine",
+      "type": "journal",
+      "publisher": "IEEE",
+      "papers": [
+        "25e20d75-e725-4f36-8fe6-06c2f664a18d"
+      ],
+      "total_citations": 138
+    },
+    "c3ab4046-2ca0-4ea5-9ab2-7804438c46c1": {
+      "id": "c3ab4046-2ca0-4ea5-9ab2-7804438c46c1",
+      "name": "2022 IEEE 25th International Conference on Intelligent Transportation Systems (ITSC)",
+      "type": "conference",
+      "publisher": "IEEE",
+      "papers": [
+        "e7d7b698-bf4e-488e-9c7c-a37848dd58d2"
+      ],
+      "total_citations": 8
+    }
+  },
+  "metadata": {
+    "total_papers": 2,
+    "total_authors": 10,
+    "total_venues": 2,
+    "exported_at": "2025-05-30T14:44:49.181409"
+  }
+}
