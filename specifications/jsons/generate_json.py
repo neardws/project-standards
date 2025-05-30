@@ -1,8 +1,11 @@
 import json
 import uuid
+import pickle
+import gzip
 from datetime import datetime
 from typing import Dict, List, Optional, Union, Tuple
 import re
+import os
 
 class AcademicPaperDatabase:
     def __init__(self):
@@ -287,9 +290,9 @@ class AcademicPaperDatabase:
             total_citations: 引用数字符串
             author_affiliations: 作者单位列表（按作者顺序）
             author_emails: 作者邮箱列表（按作者顺序）
-            cas_division: 中科院分区（期刊用）
-            jcr_division: JCR分区（期刊用）
-            ccf_class: CCF分类（期刊和会议通用）
+            cas_division: 中科院分区（期刊）
+            jcr_division: JCR分区（期刊）
+            ccf_class: CCF分类
             
         Returns:
             str: 论文ID
@@ -314,27 +317,30 @@ class AcademicPaperDatabase:
         if not venue_name or not venue_name.strip():
             raise ValueError("期刊名或会议名不能为空")
         
-        # 验证邮箱格式
+        # 验证邮箱格式（如果提供）
         if author_emails:
             for email in author_emails:
                 if email and not self._validate_email(email):
                     raise ValueError(f"邮箱格式不正确: {email}")
         
-        # 解析作者
+        # 解析作者信息
         author_ids, corresponding_author_ids = self._parse_authors(authors)
         
-        # 更新作者信息（单位和邮箱）
+        # 处理作者的详细信息
         if author_affiliations or author_emails:
-            affiliations = author_affiliations or []
-            emails = author_emails or []
+            author_affiliations = author_affiliations or []
+            author_emails = author_emails or []
             
-            # 重新解析作者名字并更新信息
-            author_names = [re.sub(r'[*†‡§¶]', '', name).strip() 
-                          for name in authors.split(',')]
+            # 确保列表长度匹配
+            while len(author_affiliations) < len(author_ids):
+                author_affiliations.append(None)
+            while len(author_emails) < len(author_ids):
+                author_emails.append(None)
             
-            for i, (author_id, full_name) in enumerate(zip(author_ids, author_names)):
-                affiliation = affiliations[i] if i < len(affiliations) else None
-                email = emails[i] if i < len(emails) else None
+            # 更新作者信息
+            for i, author_id in enumerate(author_ids):
+                affiliation = author_affiliations[i] if i < len(author_affiliations) else None
+                email = author_emails[i] if i < len(author_emails) else None
                 
                 if author_id in self.authors:
                     if affiliation and self.authors[author_id].get('affiliation') == 'n/a':
@@ -342,19 +348,23 @@ class AcademicPaperDatabase:
                     if email and self.authors[author_id].get('email') == 'n/a':
                         self.authors[author_id]['email'] = email
         
-        # 处理期刊/会议
-        venue_id = self._get_or_create_venue(venue_name, paper_type, publisher,
-                                           cas_division, jcr_division, ccf_class)
+        # 解析日期
+        parsed_date = self._parse_date(publication_date)
+        publication_year = self._extract_year_from_date(parsed_date)
+        
+        # 创建或获取期刊/会议
+        venue_id = None
+        if venue_name:
+            venue_id = self._get_or_create_venue(
+                venue_name, paper_type, publisher, 
+                cas_division, jcr_division, ccf_class
+            )
         
         # 处理引用数
-        citation_count = self._extract_citations(total_citations or '0')
+        citations_count = self._extract_citations(total_citations)
         
         # 生成论文ID
         paper_id = self._generate_id()
-        
-        # 解析发表日期
-        parsed_date = self._parse_date(publication_date)
-        publication_year = self._extract_year_from_date(parsed_date)
         
         # 创建论文记录
         paper_record = {
@@ -362,16 +372,16 @@ class AcademicPaperDatabase:
             'title': title.strip(),
             'type': paper_type,
             'authors': author_ids,
-            'corresponding_authors': corresponding_author_ids,  # 通讯作者与论文绑定
+            'corresponding_authors': corresponding_author_ids,
             'publication_date': parsed_date,
-            'publication_year': publication_year,  # 为会议论文添加年份信息
+            'publication_year': publication_year,
             'venue_id': venue_id,
-            'volume': volume.strip() if volume else None,
-            'issue': issue.strip() if issue else None,
-            'pages': pages.strip() if pages else 'n/a',
-            'publisher': publisher.strip() if publisher else 'n/a',
-            'abstract': (abstract[:1000] + '...') if abstract and len(abstract) > 1000 else (abstract or 'n/a'),
-            'total_citations': citation_count,
+            'volume': volume,
+            'issue': issue,
+            'pages': pages or 'n/a',
+            'publisher': publisher or 'n/a',
+            'abstract': abstract[:1000] + '...' if abstract and len(abstract) > 1000 else (abstract or 'n/a'),
+            'total_citations': citations_count,
             'created_at': datetime.now().isoformat()
         }
         
@@ -382,25 +392,25 @@ class AcademicPaperDatabase:
         for author_id in author_ids:
             if author_id in self.authors:
                 self.authors[author_id]['papers'].append(paper_id)
-                self.authors[author_id]['total_citations'] += citation_count
+                self.authors[author_id]['total_citations'] += citations_count
         
         # 更新期刊/会议的论文列表和引用数
         if venue_id and venue_id in self.venues:
             self.venues[venue_id]['papers'].append(paper_id)
-            self.venues[venue_id]['total_citations'] += citation_count
+            self.venues[venue_id]['total_citations'] += citations_count
         
         return paper_id
     
     def add_author(self, first_name: str, last_name: str, 
                    affiliation: str = None, email: str = None) -> str:
         """
-        单独添加作者信息
+        添加作者到数据库
         
         Args:
-            first_name: 作者名
-            last_name: 作者姓
-            affiliation: 作者单位
-            email: 作者邮箱
+            first_name: 名
+            last_name: 姓
+            affiliation: 单位
+            email: 邮箱
             
         Returns:
             str: 作者ID
@@ -409,7 +419,7 @@ class AcademicPaperDatabase:
             ValueError: 输入格式错误时抛出异常
         """
         if not first_name and not last_name:
-            raise ValueError("作者姓名不能全部为空")
+            raise ValueError("名和姓不能都为空")
         
         if email and not self._validate_email(email):
             raise ValueError(f"邮箱格式不正确: {email}")
@@ -550,6 +560,156 @@ class AcademicPaperDatabase:
         self.papers = data.get('papers', {})
         self.authors = data.get('authors', {})
         self.venues = data.get('venues', {})
+    
+    def save_to_pickle(self, filename: str, compress: bool = True):
+        """
+        保存数据库对象到pickle文件
+        
+        Args:
+            filename: 文件名
+            compress: 是否压缩文件
+        """
+        try:
+            # 准备要保存的数据
+            save_data = {
+                'papers': self.papers,
+                'authors': self.authors,
+                'venues': self.venues,
+                'metadata': {
+                    'total_papers': len(self.papers),
+                    'total_authors': len(self.authors),
+                    'total_venues': len(self.venues),
+                    'saved_at': datetime.now().isoformat(),
+                    'version': '1.0'
+                }
+            }
+            
+            if compress:
+                # 使用gzip压缩
+                if not filename.endswith('.pkl.gz'):
+                    filename = filename + '.pkl.gz' if not filename.endswith('.pkl') else filename.replace('.pkl', '.pkl.gz')
+                
+                with gzip.open(filename, 'wb') as f:
+                    pickle.dump(save_data, f, protocol=pickle.HIGHEST_PROTOCOL)
+                print(f"数据库已保存到压缩文件: {filename}")
+            else:
+                # 不压缩
+                if not filename.endswith('.pkl'):
+                    filename = filename + '.pkl'
+                
+                with open(filename, 'wb') as f:
+                    pickle.dump(save_data, f, protocol=pickle.HIGHEST_PROTOCOL)
+                print(f"数据库已保存到文件: {filename}")
+            
+            # 显示文件大小
+            file_size = os.path.getsize(filename)
+            if file_size < 1024:
+                size_str = f"{file_size} bytes"
+            elif file_size < 1024 * 1024:
+                size_str = f"{file_size / 1024:.2f} KB"
+            else:
+                size_str = f"{file_size / (1024 * 1024):.2f} MB"
+            
+            print(f"文件大小: {size_str}")
+            
+        except Exception as e:
+            raise Exception(f"保存文件时发生错误: {e}")
+    
+    def load_from_pickle(self, filename: str):
+        """
+        从pickle文件加载数据库对象
+        
+        Args:
+            filename: 文件名
+        """
+        try:
+            # 检查文件是否存在
+            if not os.path.exists(filename):
+                raise FileNotFoundError(f"文件不存在: {filename}")
+            
+            # 检查是否为压缩文件
+            is_compressed = filename.endswith('.gz')
+            
+            if is_compressed:
+                with gzip.open(filename, 'rb') as f:
+                    data = pickle.load(f)
+                print(f"从压缩文件加载数据: {filename}")
+            else:
+                with open(filename, 'rb') as f:
+                    data = pickle.load(f)
+                print(f"从文件加载数据: {filename}")
+            
+            # 恢复数据
+            self.papers = data.get('papers', {})
+            self.authors = data.get('authors', {})
+            self.venues = data.get('venues', {})
+            
+            # 显示加载信息
+            metadata = data.get('metadata', {})
+            print(f"加载完成:")
+            print(f"  论文数量: {len(self.papers)}")
+            print(f"  作者数量: {len(self.authors)}")
+            print(f"  期刊/会议数量: {len(self.venues)}")
+            if 'saved_at' in metadata:
+                print(f"  保存时间: {metadata['saved_at']}")
+            if 'version' in metadata:
+                print(f"  数据版本: {metadata['version']}")
+                
+        except Exception as e:
+            raise Exception(f"加载文件时发生错误: {e}")
+    
+    @classmethod
+    def create_from_pickle(cls, filename: str) -> 'AcademicPaperDatabase':
+        """
+        从pickle文件创建新的数据库实例
+        
+        Args:
+            filename: 文件名
+            
+        Returns:
+            AcademicPaperDatabase: 新的数据库实例
+        """
+        db = cls()
+        db.load_from_pickle(filename)
+        return db
+    
+    def get_database_stats(self) -> Dict:
+        """获取数据库统计信息"""
+        total_citations = sum(paper.get('total_citations', 0) for paper in self.papers.values())
+        
+        # 按年份统计论文数量
+        papers_by_year = {}
+        for paper in self.papers.values():
+            year = paper.get('publication_year', 'Unknown')
+            papers_by_year[year] = papers_by_year.get(year, 0) + 1
+        
+        # 按类型统计论文数量
+        papers_by_type = {}
+        for paper in self.papers.values():
+            paper_type = paper.get('type', 'Unknown')
+            papers_by_type[paper_type] = papers_by_type.get(paper_type, 0) + 1
+        
+        # 最高引用论文
+        most_cited_paper = None
+        max_citations = 0
+        for paper in self.papers.values():
+            citations = paper.get('total_citations', 0)
+            if citations > max_citations:
+                max_citations = citations
+                most_cited_paper = paper
+        
+        return {
+            'total_papers': len(self.papers),
+            'total_authors': len(self.authors),
+            'total_venues': len(self.venues),
+            'total_citations': total_citations,
+            'papers_by_year': papers_by_year,
+            'papers_by_type': papers_by_type,
+            'most_cited_paper': {
+                'title': most_cited_paper.get('title', 'N/A') if most_cited_paper else 'N/A',
+                'citations': max_citations
+            } if most_cited_paper else None
+        }
 
 
 # 使用示例
@@ -609,49 +769,48 @@ def main():
         print(f"成功添加期刊论文，ID: {paper1_id}")
         print(f"成功添加会议论文，ID: {paper2_id}")
         
-        # 获取论文详细信息
-        paper_details = db.get_paper_with_details(paper1_id)
-        print(f"\n论文详细信息:")
-        print(f"标题: {paper_details['title']}")
-        print(f"作者:")
-        for author in paper_details['authors_details']:
-            corresponding = " (通讯作者)" if author['is_corresponding'] else ""
-            print(f"  - {author['full_name']}{corresponding}")
-            print(f"    名: {author['first_name']}, 姓: {author['last_name']}")
-            print(f"    单位: {author['affiliation']}")
-            print(f"    邮箱: {author['email']}")
+        # 获取数据库统计信息
+        stats = db.get_database_stats()
+        print(f"\n数据库统计信息:")
+        print(f"总论文数: {stats['total_papers']}")
+        print(f"总作者数: {stats['total_authors']}")
+        print(f"总期刊/会议数: {stats['total_venues']}")
+        print(f"总引用数: {stats['total_citations']}")
+        print(f"按年份分布: {stats['papers_by_year']}")
+        print(f"按类型分布: {stats['papers_by_type']}")
+        if stats['most_cited_paper']:
+            print(f"最高引用论文: {stats['most_cited_paper']['title']} ({stats['most_cited_paper']['citations']} 次引用)")
         
-        print(f"\n期刊信息:")
-        venue = paper_details['venue_details']
-        print(f"  期刊名: {venue['name']}")
-        print(f"  出版社: {venue['publisher']}")
-        print(f"  中科院分区: {venue['cas_division']}")
-        print(f"  JCR分区: {venue['jcr_division']}")
-        print(f"  CCF分类: {venue['ccf_class']}")
+        # 保存为pickle文件（压缩）
+        db.save_to_pickle('academic_papers_compressed', compress=True)
         
-        # 查看会议论文详情
-        paper2_details = db.get_paper_with_details(paper2_id)
-        print(f"\n会议论文详细信息:")
-        print(f"标题: {paper2_details['title']}")
-        print(f"发表年份: {paper2_details['publication_year']}")
-        venue2 = paper2_details['venue_details']
-        print(f"会议原名: {venue2['name']}")
-        print(f"会议标准名: {venue2['normalized_name']}")
-        print(f"CCF分类: {venue2['ccf_class']}")
+        # 保存为pickle文件（不压缩）
+        db.save_to_pickle('academic_papers_uncompressed', compress=False)
         
-        # 导出数据
+        # 导出JSON（用于比较）
         db.export_to_json('academic_papers.json')
         print("\n数据已导出到 academic_papers.json")
         
-        # 搜索示例
-        papers_2019 = db.search_papers(year=2019)
-        print(f"\n2019年的论文数量: {len(papers_2019)}")
+        # 测试从pickle文件加载
+        print("\n测试从pickle文件加载数据:")
+        new_db = AcademicPaperDatabase.create_from_pickle('academic_papers_compressed.pkl.gz')
         
-        journal_papers = db.search_papers(type='journal')
-        print(f"期刊论文数量: {len(journal_papers)}")
+        # 验证加载的数据
+        liu_papers = new_db.search_papers(author='Kai Liu')
+        print(f"加载后搜索 Kai Liu 的论文数量: {len(liu_papers)}")
         
-        liu_papers = db.search_papers(author='Kai Liu')
-        print(f"Kai Liu的论文数量: {len(liu_papers)}")
+        # 显示文件大小比较
+        print(f"\n文件大小比较:")
+        for filename in ['academic_papers.json', 'academic_papers_uncompressed.pkl', 'academic_papers_compressed.pkl.gz']:
+            if os.path.exists(filename):
+                size = os.path.getsize(filename)
+                if size < 1024:
+                    size_str = f"{size} bytes"
+                elif size < 1024 * 1024:
+                    size_str = f"{size / 1024:.2f} KB"
+                else:
+                    size_str = f"{size / (1024 * 1024):.2f} MB"
+                print(f"  {filename}: {size_str}")
         
     except ValueError as e:
         print(f"输入错误: {e}")

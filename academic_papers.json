@@ -1,226 +1,226 @@
 {
   "papers": {
-    "86332d3e-3338-4559-9bde-0c5cbeb620da": {
-      "id": "86332d3e-3338-4559-9bde-0c5cbeb620da",
+    "97133580-2391-4dde-b4d8-ecb0fc5392cd": {
+      "id": "97133580-2391-4dde-b4d8-ecb0fc5392cd",
       "title": "A Hierarchical Architecture for the Future Internet of Vehicles",
       "type": "journal",
       "authors": [
-        "5555f78b-c82e-4f85-8a78-a9f6b66db2dd",
-        "415c3621-56ea-4e6f-a504-8103a58e7de4",
-        "6d6f023e-ab79-4a03-9c64-8db5a564c194",
-        "779b0bd1-0030-4d58-bd89-661d1f7a9be1",
-        "7784ede6-b69b-40b0-9233-43988c782fd6",
-        "f8b52d1f-cece-41d9-883b-38cbc2856939"
+        "715055b4-6157-4f87-9fac-3337140eb873",
+        "90862dbd-7c60-4185-b9b3-3f8602bea0c8",
+        "7cd783d0-5049-4769-b643-f29eea1efafd",
+        "e1ea5b69-bf3c-4518-b9c9-091ce05febd2",
+        "23fe3736-5f51-4671-97ea-1a9868b5f5da",
+        "1067116b-8eb3-4c86-9668-95254aa45d9e"
       ],
       "corresponding_authors": [
-        "5555f78b-c82e-4f85-8a78-a9f6b66db2dd",
-        "779b0bd1-0030-4d58-bd89-661d1f7a9be1"
+        "715055b4-6157-4f87-9fac-3337140eb873",
+        "e1ea5b69-bf3c-4518-b9c9-091ce05febd2"
       ],
       "publication_date": "2019-07-19",
       "publication_year": "2019",
-      "venue_id": "4785b9d4-7ee5-4c01-9146-1fa149d259ef",
+      "venue_id": "1b1fb409-9473-4593-b31c-f7b571c279d8",
       "volume": "57",
       "issue": "7",
       "pages": "41-47",
       "publisher": "IEEE",
       "abstract": "Recent advances in wireless communication, sensing, computation and control technologies have paved the way for the development of a new era of Internet of Vehicles (IoV)...",
       "total_citations": 138,
-      "created_at": "2025-05-30T17:07:46.170429"
+      "created_at": "2025-05-30T17:16:49.252657"
     },
-    "1963d10b-91d7-4bc6-8e55-1c8a502492df": {
-      "id": "1963d10b-91d7-4bc6-8e55-1c8a502492df",
+    "f2893423-07f8-4b15-b6ca-8ef06d95f2d2": {
+      "id": "f2893423-07f8-4b15-b6ca-8ef06d95f2d2",
       "title": "Age of View: A New Metric for Evaluating Heterogeneous Information Fusion in Vehicular Cyber-Physical Systems",
       "type": "conference",
       "authors": [
-        "bd527b2c-6f0d-4198-a0a4-9003920d2f12",
-        "31ac3a26-4f1b-4250-a505-d723cefe9a59",
-        "43b88934-bc5c-4a23-acc9-07f85416574d",
-        "d775de77-f53f-4683-8268-de6ed28516a0",
-        "a791005e-fb3c-4608-a5b4-b8887ec1c2c4",
-        "f093d5c4-60ee-46ed-b520-b59e53102eb2"
+        "041057a9-3d1d-4129-833d-4050c00d9f5c",
+        "d73df8a8-d10d-40a3-b781-52bca03c7db2",
+        "9711ecf2-81cb-4186-abc8-b5f7cd173e93",
+        "19a1fe21-6977-423b-8ec0-7ee3c522dbf5",
+        "6685c1c0-cd96-4745-8216-0ec6a7fbf1fc",
+        "13514734-857a-41ae-81a1-67ec06fdfe42"
       ],
       "corresponding_authors": [
-        "31ac3a26-4f1b-4250-a505-d723cefe9a59"
+        "d73df8a8-d10d-40a3-b781-52bca03c7db2"
       ],
       "publication_date": "2022-10-08",
       "publication_year": "2022",
-      "venue_id": "94ebf311-eb8b-4102-8eef-4e2c4bb1c9e8",
+      "venue_id": "ceae8e2b-8e7e-499c-82bc-8c7f83b5f4e3",
       "volume": null,
       "issue": null,
       "pages": "3762-3767",
       "publisher": "IEEE",
       "abstract": "Heterogeneous information fusion is one of the most critical issues for realizing vehicular cyber-physical systems (VCPSs)...",
       "total_citations": 8,
-      "created_at": "2025-05-30T17:07:46.170584"
+      "created_at": "2025-05-30T17:16:49.252790"
     }
   },
   "authors": {
-    "5555f78b-c82e-4f85-8a78-a9f6b66db2dd": {
-      "id": "5555f78b-c82e-4f85-8a78-a9f6b66db2dd",
+    "715055b4-6157-4f87-9fac-3337140eb873": {
+      "id": "715055b4-6157-4f87-9fac-3337140eb873",
       "first_name": "Kai",
       "last_name": "Liu",
       "full_name": "Kai Liu",
       "affiliation": "Beijing University of Technology",
       "email": "kailiu@bjut.edu.cn",
       "papers": [
-        "86332d3e-3338-4559-9bde-0c5cbeb620da"
+        "97133580-2391-4dde-b4d8-ecb0fc5392cd"
       ],
       "total_citations": 138
     },
-    "415c3621-56ea-4e6f-a504-8103a58e7de4": {
-      "id": "415c3621-56ea-4e6f-a504-8103a58e7de4",
+    "90862dbd-7c60-4185-b9b3-3f8602bea0c8": {
+      "id": "90862dbd-7c60-4185-b9b3-3f8602bea0c8",
       "first_name": "Xincao",
       "last_name": "Xu",
       "full_name": "Xincao Xu",
       "affiliation": "Beijing University of Technology",
       "email": "xuxincao@bjut.edu.cn",
       "papers": [
-        "86332d3e-3338-4559-9bde-0c5cbeb620da"
+        "97133580-2391-4dde-b4d8-ecb0fc5392cd"
       ],
       "total_citations": 138
     },
-    "6d6f023e-ab79-4a03-9c64-8db5a564c194": {
-      "id": "6d6f023e-ab79-4a03-9c64-8db5a564c194",
+    "7cd783d0-5049-4769-b643-f29eea1efafd": {
+      "id": "7cd783d0-5049-4769-b643-f29eea1efafd",
       "first_name": "Mengliang",
       "last_name": "Chen",
       "full_name": "Mengliang Chen",
       "affiliation": "Beijing University of Technology",
       "email": "chenmengliang@bjut.edu.cn",
       "papers": [
-        "86332d3e-3338-4559-9bde-0c5cbeb620da"
+        "97133580-2391-4dde-b4d8-ecb0fc5392cd"
       ],
       "total_citations": 138
     },
-    "779b0bd1-0030-4d58-bd89-661d1f7a9be1": {
-      "id": "779b0bd1-0030-4d58-bd89-661d1f7a9be1",
+    "e1ea5b69-bf3c-4518-b9c9-091ce05febd2": {
+      "id": "e1ea5b69-bf3c-4518-b9c9-091ce05febd2",
       "first_name": "Bingyi",
       "last_name": "Liu",
       "full_name": "Bingyi Liu",
       "affiliation": "Beijing University of Technology",
       "email": "liubingyi@bjut.edu.cn",
       "papers": [
-        "86332d3e-3338-4559-9bde-0c5cbeb620da"
+        "97133580-2391-4dde-b4d8-ecb0fc5392cd"
       ],
       "total_citations": 138
     },
-    "7784ede6-b69b-40b0-9233-43988c782fd6": {
-      "id": "7784ede6-b69b-40b0-9233-43988c782fd6",
+    "23fe3736-5f51-4671-97ea-1a9868b5f5da": {
+      "id": "23fe3736-5f51-4671-97ea-1a9868b5f5da",
       "first_name": "Libing",
       "last_name": "Wu",
       "full_name": "Libing Wu",
       "affiliation": "Beijing University of Technology",
       "email": "wulibing@bjut.edu.cn",
       "papers": [
-        "86332d3e-3338-4559-9bde-0c5cbeb620da"
+        "97133580-2391-4dde-b4d8-ecb0fc5392cd"
       ],
       "total_citations": 138
     },
-    "f8b52d1f-cece-41d9-883b-38cbc2856939": {
-      "id": "f8b52d1f-cece-41d9-883b-38cbc2856939",
+    "1067116b-8eb3-4c86-9668-95254aa45d9e": {
+      "id": "1067116b-8eb3-4c86-9668-95254aa45d9e",
       "first_name": "Victor",
       "last_name": "CS Lee",
       "full_name": "Victor CS Lee",
       "affiliation": "The Chinese University of Hong Kong",
       "email": "victor@cuhk.edu.hk",
       "papers": [
-        "86332d3e-3338-4559-9bde-0c5cbeb620da"
+        "97133580-2391-4dde-b4d8-ecb0fc5392cd"
       ],
       "total_citations": 138
     },
-    "bd527b2c-6f0d-4198-a0a4-9003920d2f12": {
-      "id": "bd527b2c-6f0d-4198-a0a4-9003920d2f12",
+    "041057a9-3d1d-4129-833d-4050c00d9f5c": {
+      "id": "041057a9-3d1d-4129-833d-4050c00d9f5c",
       "first_name": "Xincao",
       "last_name": "Xu",
       "full_name": "Xincao Xu",
       "affiliation": "n/a",
       "email": "n/a",
       "papers": [
-        "1963d10b-91d7-4bc6-8e55-1c8a502492df"
+        "f2893423-07f8-4b15-b6ca-8ef06d95f2d2"
       ],
       "total_citations": 8
     },
-    "31ac3a26-4f1b-4250-a505-d723cefe9a59": {
-      "id": "31ac3a26-4f1b-4250-a505-d723cefe9a59",
+    "d73df8a8-d10d-40a3-b781-52bca03c7db2": {
+      "id": "d73df8a8-d10d-40a3-b781-52bca03c7db2",
       "first_name": "Kai",
       "last_name": "Liu",
       "full_name": "Kai Liu",
       "affiliation": "n/a",
       "email": "n/a",
       "papers": [
-        "1963d10b-91d7-4bc6-8e55-1c8a502492df"
+        "f2893423-07f8-4b15-b6ca-8ef06d95f2d2"
       ],
       "total_citations": 8
     },
-    "43b88934-bc5c-4a23-acc9-07f85416574d": {
-      "id": "43b88934-bc5c-4a23-acc9-07f85416574d",
+    "9711ecf2-81cb-4186-abc8-b5f7cd173e93": {
+      "id": "9711ecf2-81cb-4186-abc8-b5f7cd173e93",
       "first_name": "Qisen",
       "last_name": "Zhang",
       "full_name": "Qisen Zhang",
       "affiliation": "n/a",
       "email": "n/a",
       "papers": [
-        "1963d10b-91d7-4bc6-8e55-1c8a502492df"
+        "f2893423-07f8-4b15-b6ca-8ef06d95f2d2"
       ],
       "total_citations": 8
     },
-    "d775de77-f53f-4683-8268-de6ed28516a0": {
-      "id": "d775de77-f53f-4683-8268-de6ed28516a0",
+    "19a1fe21-6977-423b-8ec0-7ee3c522dbf5": {
+      "id": "19a1fe21-6977-423b-8ec0-7ee3c522dbf5",
       "first_name": "Hao",
       "last_name": "Jiang",
       "full_name": "Hao Jiang",
       "affiliation": "n/a",
       "email": "n/a",
       "papers": [
-        "1963d10b-91d7-4bc6-8e55-1c8a502492df"
+        "f2893423-07f8-4b15-b6ca-8ef06d95f2d2"
       ],
       "total_citations": 8
     },
-    "a791005e-fb3c-4608-a5b4-b8887ec1c2c4": {
-      "id": "a791005e-fb3c-4608-a5b4-b8887ec1c2c4",
+    "6685c1c0-cd96-4745-8216-0ec6a7fbf1fc": {
+      "id": "6685c1c0-cd96-4745-8216-0ec6a7fbf1fc",
       "first_name": "Ke",
       "last_name": "Xiao",
       "full_name": "Ke Xiao",
       "affiliation": "n/a",
       "email": "n/a",
       "papers": [
-        "1963d10b-91d7-4bc6-8e55-1c8a502492df"
+        "f2893423-07f8-4b15-b6ca-8ef06d95f2d2"
       ],
       "total_citations": 8
     },
-    "f093d5c4-60ee-46ed-b520-b59e53102eb2": {
-      "id": "f093d5c4-60ee-46ed-b520-b59e53102eb2",
+    "13514734-857a-41ae-81a1-67ec06fdfe42": {
+      "id": "13514734-857a-41ae-81a1-67ec06fdfe42",
       "first_name": "Jiangtao",
       "last_name": "Luo",
       "full_name": "Jiangtao Luo",
       "affiliation": "n/a",
       "email": "n/a",
       "papers": [
-        "1963d10b-91d7-4bc6-8e55-1c8a502492df"
+        "f2893423-07f8-4b15-b6ca-8ef06d95f2d2"
       ],
       "total_citations": 8
     }
   },
   "venues": {
-    "4785b9d4-7ee5-4c01-9146-1fa149d259ef": {
-      "id": "4785b9d4-7ee5-4c01-9146-1fa149d259ef",
+    "1b1fb409-9473-4593-b31c-f7b571c279d8": {
+      "id": "1b1fb409-9473-4593-b31c-f7b571c279d8",
       "name": "IEEE Communications Magazine",
       "type": "journal",
       "publisher": "IEEE",
       "papers": [
-        "86332d3e-3338-4559-9bde-0c5cbeb620da"
+        "97133580-2391-4dde-b4d8-ecb0fc5392cd"
       ],
       "total_citations": 138,
       "cas_division": "二区",
       "jcr_division": "Q1",
       "ccf_class": "B"
     },
-    "94ebf311-eb8b-4102-8eef-4e2c4bb1c9e8": {
-      "id": "94ebf311-eb8b-4102-8eef-4e2c4bb1c9e8",
+    "ceae8e2b-8e7e-499c-82bc-8c7f83b5f4e3": {
+      "id": "ceae8e2b-8e7e-499c-82bc-8c7f83b5f4e3",
       "name": "2022 IEEE 25th International Conference on Intelligent Transportation Systems (ITSC)",
       "type": "conference",
       "publisher": "IEEE",
       "papers": [
-        "1963d10b-91d7-4bc6-8e55-1c8a502492df"
+        "f2893423-07f8-4b15-b6ca-8ef06d95f2d2"
       ],
       "total_citations": 8,
       "normalized_name": "IEEE International Conference on Intelligent Transportation Systems (ITSC)",
@@ -231,6 +231,6 @@
     "total_papers": 2,
     "total_authors": 12,
     "total_venues": 2,
-    "exported_at": "2025-05-30T17:07:46.170697"
+    "exported_at": "2025-05-30T17:16:49.253495"
   }
 }
